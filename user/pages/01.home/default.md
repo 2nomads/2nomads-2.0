@@ -2,8 +2,8 @@
 title: Home
 ---
 
-# Grav is Running!
-## You have installed **Grav** successfully
+# Hola Maite!
+## Este es Grav, el CMS para 2nomads 2.0
 
 Congratulations! You have installed the **Base Grav Package** that provides a **simple page** and the default **antimatter** theme to get you started.
 
