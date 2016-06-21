@@ -28,9 +28,26 @@ class __TwigTemplate_7b1b3af95cf69fec7ae3d95f303cf00a097b404de8ae3a87b90910b499a
     public function block_content($context, array $blocks = array())
     {
         // line 4
-        echo "\t";
+        echo "<article id=\"main\">
+    <header class=\"special container\">
+        <span class=\"icon fa-thumbs-up\"></span>
+        <h2>";
+        // line 7
+        echo $this->getAttribute($this->getAttribute((isset($context["page"]) ? $context["page"] : null), "header", array()), "title", array());
+        echo "</h2>
+    </header>
+
+    <section class=\"wrapper style4 special container 75%\">
+        <div class=\"content\">
+          ";
+        // line 12
         echo $this->getAttribute((isset($context["page"]) ? $context["page"] : null), "content", array());
         echo "
+        </div>
+
+    </section>
+
+</article>
 ";
     }
 
@@ -46,12 +63,24 @@ class __TwigTemplate_7b1b3af95cf69fec7ae3d95f303cf00a097b404de8ae3a87b90910b499a
 
     public function getDebugInfo()
     {
-        return array (  31 => 4,  28 => 3,  11 => 1,);
+        return array (  44 => 12,  36 => 7,  31 => 4,  28 => 3,  11 => 1,);
     }
 }
 /* {% extends 'partials/base.html.twig' %}*/
 /* */
 /* {% block content %}*/
-/* 	{{ page.content }}*/
-/* {% endblock %}*/
+/* <article id="main">*/
+/*     <header class="special container">*/
+/*         <span class="icon fa-thumbs-up"></span>*/
+/*         <h2>{{ page.header.title }}</h2>*/
+/*     </header>*/
 /* */
+/*     <section class="wrapper style4 special container 75%">*/
+/*         <div class="content">*/
+/*           {{ page.content }}*/
+/*         </div>*/
+/* */
+/*     </section>*/
+/* */
+/* </article>*/
+/* {% endblock %}*/

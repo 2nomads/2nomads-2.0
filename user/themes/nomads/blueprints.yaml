@@ -1,10 +1,10 @@
-name: 2nomads
+name: Nomads
 version: 0.1
 testing: true
 description: "**2nomads'** theme built for **Grav**"
 icon: empire
 author:
-  name: Team 2nomads
+  name: Ivan Duch
   email: info@2nomads.org
   url: http://2nomads.org
 homepage: https://2nomads.org

@@ -1,22 +1,26 @@
-<div class="modular-row features {{ page.header.class}}">
-    {{ content }}
-    <div class="feature-items">
-    {% for feature in page.header.features %}
-           <div class="feature">
-            {% if feature.icon %}
-            <i class="fa fa-fw fa-{{ feature.icon }}"></i>
-            <div class="feature-content icon-offset">
-            {% else %}
-            <div class="feature-content">
-            {% endif %}
-            {% if feature.header %}
-            <h4>{{ feature.header }}</h4>
-            {% endif %}
-            {% if feature.text %}
-            <p>{{ feature.text }}</p>
-            {% endif %}
-            </div>
-        </div>
-    {% endfor %}
+<section class="wrapper style1 container special">
+    <div class="row">
+        {% for item in page.header.features %}
+            <div class="4u 12u(narrower)">
+                <section>
+                    {% if item.icon %}
+                    <span class="icon featured fa-{{ item.icon }}"></span>
+                    {% endif %}
+                    <header>
+                        <h3>{{ item.title }}</h3>
+                    </header>
+                    <p>{{ item.text }}</p>
+                    {% if item.buttons %}
+                    <footer>
+                        <ul class="buttons">
+                            {% for button in item.buttons %}
+                                <li><a href="{{ button.url }}" class="button small">{{ button.text }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </footer>
+                    {% endif %}
+                </section>
+            </div> 
+        {% endfor %}
     </div>
-</div>
+</section>
