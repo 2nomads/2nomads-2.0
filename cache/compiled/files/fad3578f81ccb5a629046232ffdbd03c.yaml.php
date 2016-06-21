@@ -2,15 +2,15 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/home/vagrant/Projects/2nomads/user/config/site.yaml',
-    'modified' => 1464893278,
+    'modified' => 1466468898,
     'data' => [
-        'title' => 'Grav',
+        'title' => '2nomads',
         'author' => [
-            'name' => 'Joe Bloggs',
-            'email' => 'joe@test.com'
+            'name' => 'Ivan Duch, Maite Barberis, Hernán Carreras',
+            'email' => 'info@2nomads.org'
         ],
         'metadata' => [
-            'description' => 'Grav is an easy to use, yet powerful, open source flat-file CMS'
+            'description' => '2nomads is a creative organization'
         ]
     ]
 ];

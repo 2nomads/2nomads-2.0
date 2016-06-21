@@ -7,4 +7,4 @@ dropdown:
     theme:
       type: ReadOnlyStream
       paths:
-        - user/themes/2nomads
+        - user/themes/nomads

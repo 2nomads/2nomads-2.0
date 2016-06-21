@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/home/vagrant/Projects/2nomads/user/config/system.yaml',
-    'modified' => 1465784953,
+    'modified' => 1466468929,
     'data' => [
         'absolute_urls' => false,
         'timezone' => '',
@@ -26,7 +26,7 @@ return [
             'hide_in_urls' => false
         ],
         'pages' => [
-            'theme' => 'antimatter',
+            'theme' => 'nomads',
             'order' => [
                 'by' => 'default',
                 'dir' => 'asc'

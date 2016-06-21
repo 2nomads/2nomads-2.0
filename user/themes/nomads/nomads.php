@@ -3,7 +3,7 @@ namespace Grav\Theme;
 
 use Grav\Common\Theme;
 
-class 2nomads extends Theme
+class nomads extends Theme
 {
 
 }

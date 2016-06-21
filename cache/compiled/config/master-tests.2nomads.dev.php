@@ -1,19 +1,9 @@
 <?php
 return [
     '@class' => 'Grav\\Common\\Config\\CompiledConfig',
-    'timestamp' => 1466468931,
-    'checksum' => 'd05e7efc157c29945047449178f20e94',
+    'timestamp' => 1466461115,
+    'checksum' => '31f382ce8a017e391c40c5ca4a768776',
     'files' => [
-        'user/2nomads.dev/config' => [
-            'security' => [
-                'file' => 'user/2nomads.dev/config/security.yaml',
-                'modified' => 1465785128
-            ],
-            'system' => [
-                'file' => 'user/2nomads.dev/config/system.yaml',
-                'modified' => 1465783706
-            ]
-        ],
         'user/config' => [
             'media' => [
                 'file' => 'user/config/media.yaml',
@@ -25,7 +15,7 @@ return [
             ],
             'site' => [
                 'file' => 'user/config/site.yaml',
-                'modified' => 1466468898
+                'modified' => 1464893278
             ],
             'streams' => [
                 'file' => 'user/config/streams.yaml',
@@ -33,7 +23,7 @@ return [
             ],
             'system' => [
                 'file' => 'user/config/system.yaml',
-                'modified' => 1466468929
+                'modified' => 1465953586
             ]
         ],
         'system/config' => [
@@ -469,17 +459,17 @@ return [
             ]
         ],
         'site' => [
-            'title' => '2nomads',
+            'title' => 'Grav',
             'author' => [
-                'name' => 'Ivan Duch, Maite Barberis, Hernán Carreras',
-                'email' => 'info@2nomads.org'
+                'name' => 'Joe Bloggs',
+                'email' => 'joe@test.com'
             ],
             'taxonomies' => [
                 0 => 'category',
                 1 => 'tag'
             ],
             'metadata' => [
-                'description' => '2nomads is a creative organization'
+                'description' => 'Grav is an easy to use, yet powerful, open source flat-file CMS'
             ],
             'summary' => [
                 'enabled' => true,
@@ -646,7 +636,7 @@ return [
                 'log' => true
             ],
             'debugger' => [
-                'enabled' => true,
+                'enabled' => false,
                 'shutdown' => [
                     'close_connection' => true
                 ],
@@ -681,7 +671,7 @@ return [
             ]
         ],
         'security' => [
-            'salt' => 'nYSOboc3qJUzGm'
+            'salt' => 'T7zkGnyEO1HDZU'
         ]
     ]
 ];
