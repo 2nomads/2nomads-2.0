@@ -2,11 +2,11 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/home/vagrant/Projects/2nomads/user/config/plugins/email.yaml',
-    'modified' => 1461784079,
+    'modified' => 1466645095,
     'data' => [
         'enabled' => true,
-        'from' => 'your@email.here',
-        'to' => 'your@email.here',
+        'from' => 'info@2nomads.org',
+        'to' => 'info@2nomads.org',
         'mailer' => [
             'engine' => 'mail',
             'smtp' => [

@@ -1,14 +1,14 @@
 ---
-title: TWENTY
+title: 2nomads
 buttons:
-    - text: Tell me more
+    - text: Take me on a Journey
       url: '#main'
 menu: before_article      
 ---
 
-<p>This is <strong>Twenty</strong>, a free
+<p>This is <strong>2nomads</strong>, an organization
     <br />
-    responsive template
+    focused on giving you
     <br />
-    by <a href="http://html5up.net">HTML5 UP</a>.
+    our most inspired work.
 </p>

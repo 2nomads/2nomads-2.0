@@ -1,5 +1,5 @@
 ---
-title: Twenty
+title: 2nomads
 menu: Home
 onpage_menu: true
 body_class: index
@@ -15,5 +15,3 @@ content:
             - _icons
             - _features
 ---
-
-

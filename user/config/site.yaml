@@ -1,13 +1,13 @@
-title: Twenty
+title: 2nomads
 author:
-  name: Joe Bloggs
-  email: 'joe@test.com'
+  name: 2nomads
+  email: 'info@2nomads.org'
 metadata:
     description: 'Twenty is a free and responsive theme for **Grav**. Its a port of Twenty template by HTML5 UP.'
 
 # Site settings
-title: Awesome Title
-email: your-email@domain.com
+title: 2nomads
+email: info@2nomads.org
 description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
@@ -35,22 +35,6 @@ copyright:
   url_label: HTML5 UP
 
 logo:
-  text1: "Twenty"
-  text2: "by HTML5 UP"
+  text1: "2nomads"
 
 # Submenu
-submenu:
-  - text: "Dolore Sed"
-    link: "#"
-  - text: "Consequat"
-    link: "#"
-  - text: "Lorem Magna"
-    link: "#"
-  - text: "Sed Magna"
-    link: "#"
-  - text: "Ipsum Nisl"
-    link: "#"
-
-buttons:
-  - text: "Sign Up"
-    link: "#"

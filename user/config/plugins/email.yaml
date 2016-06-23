@@ -1,6 +1,6 @@
 enabled: true
-from: your@email.here
-to: your@email.here
+from: info@2nomads.org
+to: info@2nomads.org
 mailer:
   engine: mail
   smtp:

@@ -1,13 +1,13 @@
 <?php
 return [
     '@class' => 'Grav\\Common\\Config\\CompiledConfig',
-    'timestamp' => 1466643383,
-    'checksum' => '49f30abf861e804c6acdee929d725792',
+    'timestamp' => 1466645215,
+    'checksum' => 'ace87101b21b64fec62064f2d010f134',
     'files' => [
         'user/config' => [
             'plugins/email' => [
                 'file' => 'user/config/plugins/email.yaml',
-                'modified' => 1461784079
+                'modified' => 1466645095
             ],
             'security' => [
                 'file' => 'user/config/security.yaml',
@@ -15,11 +15,11 @@ return [
             ],
             'site' => [
                 'file' => 'user/config/site.yaml',
-                'modified' => 1461784079
+                'modified' => 1466645069
             ],
             'system' => [
                 'file' => 'user/config/system.yaml',
-                'modified' => 1466643378
+                'modified' => 1466644784
             ]
         ],
         'system/config' => [
@@ -83,9 +83,9 @@ return [
             ],
             'email' => [
                 'enabled' => true,
-                'from' => 'your@email.here',
+                'from' => 'info@2nomads.org',
                 'from_name' => NULL,
-                'to' => 'your@email.here',
+                'to' => 'info@2nomads.org',
                 'to_name' => NULL,
                 'mailer' => [
                     'engine' => 'mail',
@@ -347,10 +347,10 @@ return [
             ]
         ],
         'site' => [
-            'title' => 'Twenty',
+            'title' => '2nomads',
             'author' => [
-                'name' => 'Joe Bloggs',
-                'email' => 'joe@test.com'
+                'name' => '2nomads',
+                'email' => 'info@2nomads.org'
             ],
             'taxonomies' => [
                 0 => 'category',
@@ -370,7 +370,7 @@ return [
             'blog' => [
                 'route' => '/blog'
             ],
-            'email' => 'your-email@domain.com',
+            'email' => 'info@2nomads.org',
             'description' => 'Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.',
             'social' => [
                 0 => [
@@ -406,36 +406,7 @@ return [
                 'url_label' => 'HTML5 UP'
             ],
             'logo' => [
-                'text1' => 'Twenty',
-                'text2' => 'by HTML5 UP'
-            ],
-            'submenu' => [
-                0 => [
-                    'text' => 'Dolore Sed',
-                    'link' => '#'
-                ],
-                1 => [
-                    'text' => 'Consequat',
-                    'link' => '#'
-                ],
-                2 => [
-                    'text' => 'Lorem Magna',
-                    'link' => '#'
-                ],
-                3 => [
-                    'text' => 'Sed Magna',
-                    'link' => '#'
-                ],
-                4 => [
-                    'text' => 'Ipsum Nisl',
-                    'link' => '#'
-                ]
-            ],
-            'buttons' => [
-                0 => [
-                    'text' => 'Sign Up',
-                    'link' => '#'
-                ]
+                'text1' => '2nomads'
             ]
         ],
         'streams' => [
