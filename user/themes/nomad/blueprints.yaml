@@ -1,0 +1,8 @@
+name: Nomad
+version: 0.2.0
+description: "Uses Twenty as the base theme and adds Receptar for the blog section"
+icon: crosshairs
+author:
+ name: 2nomads
+ email: info@2nomads.org
+ url: http://2nomads.org
