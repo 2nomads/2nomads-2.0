@@ -1,9 +1,9 @@
 <?php
 namespace Grav\Console;
 
-use Grav\Common\Grav;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -33,13 +33,6 @@ class ConsoleCommand extends Command
     protected function serve()
     {
 
-    }
-
-    protected function displayGPMRelease()
-    {
-        $this->output->writeln('');
-        $this->output->writeln('GPM Releases Configuration: <yellow>' . ucfirst(Grav::instance()['config']->get('system.gpm.releases')) . '</yellow>');
-        $this->output->writeln('');
     }
 
 }

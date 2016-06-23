@@ -247,7 +247,7 @@ class Collection extends Iterator
      *
      * @param  string $path the path the item
      *
-     * @return Integer   the index of the current page.
+     * @return Page    Item in the array the the current position.
      */
     public function currentPosition($path)
     {

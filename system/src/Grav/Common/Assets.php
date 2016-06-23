@@ -23,6 +23,8 @@ define('JS_ASSET', false);
  */
 class Assets
 {
+    use GravTrait;
+
     /** @const Regex to match CSS and JavaScript files */
     const DEFAULT_REGEX = '/.\.(css|js)$/i';
 
@@ -33,7 +35,7 @@ class Assets
     const JS_REGEX = '/.\.js$/i';
 
     /** @const Regex to match CSS urls */
-    const CSS_URL_REGEX = '{url\(([\'\"]?)(.*?)\1\)}';
+    const CSS_URL_REGEX = '{url\([\'\"]?((?!http|//).*?)[\'\"]?\)}';
 
     /** @const Regex to match CSS sourcemap comments */
     const CSS_SOURCEMAP_REGEX = '{\/\*# (.*) \*\/}';
@@ -60,11 +62,7 @@ class Assets
 
     // Configuration toggles to enable/disable the pipelining feature
     protected $css_pipeline = false;
-    protected $css_pipeline_include_externals = true;
-    protected $css_pipeline_before_excludes = true;
     protected $js_pipeline = false;
-    protected $js_pipeline_include_externals = true;
-    protected $js_pipeline_before_excludes = true;
 
     // The asset holding arrays
     protected $collections = [];
@@ -123,24 +121,8 @@ class Assets
             $this->css_pipeline = $config['css_pipeline'];
         }
 
-        if (isset($config['css_pipeline_include_externals'])) {
-            $this->css_pipeline_include_externals = $config['css_pipeline_include_externals'];
-        }
-
-        if (isset($config['css_pipeline_before_excludes'])) {
-            $this->css_pipeline_before_excludes = $config['css_pipeline_before_excludes'];
-        }
-
         if (isset($config['js_pipeline'])) {
             $this->js_pipeline = $config['js_pipeline'];
-        }
-
-        if (isset($config['js_pipeline_include_externals'])) {
-            $this->js_pipeline_include_externals = $config['js_pipeline_include_externals'];
-        }
-
-        if (isset($config['js_pipeline_before_excludes'])) {
-            $this->js_pipeline_before_excludes = $config['js_pipeline_before_excludes'];
         }
 
         // Pipeline requires public dir
@@ -185,7 +167,7 @@ class Assets
 
         // Set timestamp
         if (isset($config['enable_asset_timestamp']) && $config['enable_asset_timestamp'] === true) {
-            $this->timestamp = '?' . Grav::instance()['cache']->getKey();
+            $this->timestamp = '?' . self::getGrav()['cache']->getKey();
         }
 
         return $this;
@@ -196,14 +178,13 @@ class Assets
      */
     public function init()
     {
-        $grav = Grav::instance();
         /** @var Config $config */
-        $config = $grav['config'];
-        $base_url = $grav['base_url'];
+        $config = self::getGrav()['config'];
+        $base_url = self::getGrav()['base_url'];
         $asset_config = (array)$config->get('system.assets');
 
         /** @var UniformResourceLocator $locator */
-        $locator = $grav['locator'];
+        $locator = self::$grav['locator'];
         $this->assets_dir = $locator->findResource('asset://') . DS;
         $this->assets_url = $locator->findResource('asset://', false);
 
@@ -518,7 +499,7 @@ class Assets
         }
 
         // Sort array by priorities (larger priority first)
-        if (Grav::instance()) {
+        if (self::getGrav()) {
             uasort($this->css, function ($a, $b) {
                 if ($a['priority'] == $b['priority']) {
                     return $b['order'] - $a['order'];
@@ -545,19 +526,14 @@ class Assets
 
         if ($this->css_pipeline) {
             $pipeline_result = $this->pipelineCss($group);
-            $pipeline_html = '<link href="' . $pipeline_result . '"' . $attributes . ' />' . "\n";
-
-            if ($this->css_pipeline_before_excludes && $pipeline_result) {
-                $output .= $pipeline_html;
+            if ($pipeline_result) {
+                $output .= '<link href="' . $pipeline_result . '"' . $attributes . ' />' . "\n";
             }
             foreach ($this->css_no_pipeline as $file) {
                 if ($group && $file['group'] == $group) {
                     $media = isset($file['media']) ? sprintf(' media="%s"', $file['media']) : '';
                     $output .= '<link href="' . $file['asset'] . $this->timestamp . '"' . $attributes . $media . ' />' . "\n";
                 }
-            }
-            if (!$this->css_pipeline_before_excludes && $pipeline_result) {
-                $output .= $pipeline_html;
             }
         } else {
             foreach ($this->css as $file) {
@@ -624,18 +600,13 @@ class Assets
 
         if ($this->js_pipeline) {
             $pipeline_result = $this->pipelineJs($group);
-            $pipeline_html = '<script src="' . $pipeline_result . '"' . $attributes . ' ></script>' . "\n";
-
-            if ($this->js_pipeline_before_excludes && $pipeline_result) {
-                $output .= $pipeline_html;
+            if ($pipeline_result) {
+                $output .= '<script src="' . $pipeline_result . '"' . $attributes . ' ></script>' . "\n";
             }
             foreach ($this->js_no_pipeline as $file) {
                 if ($group && $file['group'] == $group) {
                     $output .= '<script src="' . $file['asset'] . $this->timestamp . '"' . $attributes . ' ' . $file['loading'] . '></script>' . "\n";
                 }
-            }
-            if (!$this->js_pipeline_before_excludes && $pipeline_result) {
-                $output .= $pipeline_html;
             }
         } else {
             foreach ($this->js as $file) {
@@ -669,7 +640,7 @@ class Assets
     protected function pipelineCss($group = 'head')
     {
         /** @var Cache $cache */
-        $cache = Grav::instance()['cache'];
+        $cache = self::getGrav()['cache'];
         $key = '?' . $cache->getKey();
 
         // temporary list of assets to pipeline
@@ -678,27 +649,20 @@ class Assets
         // clear no-pipeline assets lists
         $this->css_no_pipeline = [];
 
-        $uid = md5(json_encode($this->css) . $this->css_minify . $this->css_rewrite . $group);
-        $file =  $uid . '.css';
-        $inline_file = $uid . '-inline.css';
+        $file = md5(json_encode($this->css) . $this->css_minify . $this->css_rewrite . $group) . '.css';
 
         $relative_path = "{$this->base_url}{$this->assets_url}/{$file}";
-
-        // If inline files exist set them on object
-        if (file_exists($this->assets_dir . $inline_file)) {
-            $this->css_no_pipeline = json_decode(file_get_contents($this->assets_dir . $inline_file), true);
-        }
+        $absolute_path = $this->assets_dir . $file;
 
         // If pipeline exist return it
-        if (file_exists($this->assets_dir . $file)) {
+        if (file_exists($absolute_path)) {
             return $relative_path . $key;
         }
 
         // Remove any non-pipeline files
         foreach ($this->css as $id => $asset) {
             if ($asset['group'] == $group) {
-                if (!$asset['pipeline'] ||
-                    ($this->isRemoteLink($asset['asset']) && $this->css_pipeline_include_externals === false)) {
+                if (!$asset['pipeline']) {
                     $this->css_no_pipeline[$id] = $asset;
                 } else {
                     $temp_css[$id] = $asset;
@@ -710,12 +674,6 @@ class Assets
         if (count($temp_css) == 0) {
             return false;
         }
-
-        // Write non-pipeline files out
-        if (!empty($this->css_no_pipeline)) {
-            file_put_contents($this->assets_dir . $inline_file, json_encode($this->css_no_pipeline));
-        }
-
 
         $css_minify = $this->css_minify;
 
@@ -729,14 +687,13 @@ class Assets
         // Concatenate files
         $buffer = $this->gatherLinks($temp_css, CSS_ASSET);
         if ($css_minify) {
-            $minifier = new \MatthiasMullie\Minify\CSS();
-            $minifier->add($buffer);
-            $buffer = $minifier->minify();
+            $min = new \CSSmin();
+            $buffer = $min->run($buffer);
         }
 
         // Write file
         if (strlen(trim($buffer)) > 0) {
-            file_put_contents($this->assets_dir . $file, $buffer);
+            file_put_contents($absolute_path, $buffer);
 
             return $relative_path . $key;
         } else {
@@ -754,7 +711,7 @@ class Assets
     protected function pipelineJs($group = 'head')
     {
         /** @var Cache $cache */
-        $cache = Grav::instance()['cache'];
+        $cache = self::getGrav()['cache'];
         $key = '?' . $cache->getKey();
 
         // temporary list of assets to pipeline
@@ -763,27 +720,20 @@ class Assets
         // clear no-pipeline assets lists
         $this->js_no_pipeline = [];
 
-        $uid = md5(json_encode($this->js) . $this->js_minify . $group);
-        $file =  $uid . '.js';
-        $inline_file = $uid . '-inline.js';
+        $file = md5(json_encode($this->js) . $this->js_minify . $group) . '.js';
 
         $relative_path = "{$this->base_url}{$this->assets_url}/{$file}";
-
-        // If inline files exist set them on object
-        if (file_exists($this->assets_dir . $inline_file)) {
-            $this->js_no_pipeline = json_decode(file_get_contents($this->assets_dir . $inline_file), true);
-        }
+        $absolute_path = $this->assets_dir . $file;
 
         // If pipeline exist return it
-        if (file_exists($this->assets_dir . $file)) {
+        if (file_exists($absolute_path)) {
             return $relative_path . $key;
         }
 
         // Remove any non-pipeline files
         foreach ($this->js as $id => $asset) {
             if ($asset['group'] == $group) {
-                if (!$asset['pipeline'] ||
-                    ($this->isRemoteLink($asset['asset']) && $this->js_pipeline_include_externals === false)) {
+                if (!$asset['pipeline']) {
                     $this->js_no_pipeline[] = $asset;
                 } else {
                     $temp_js[$id] = $asset;
@@ -796,22 +746,15 @@ class Assets
             return false;
         }
 
-        // Write non-pipeline files out
-        if (!empty($this->js_no_pipeline)) {
-            file_put_contents($this->assets_dir . $inline_file, json_encode($this->js_no_pipeline));
-        }
-
         // Concatenate files
         $buffer = $this->gatherLinks($temp_js, JS_ASSET);
         if ($this->js_minify) {
-            $minifier = new \MatthiasMullie\Minify\JS();
-            $minifier->add($buffer);
-            $buffer = $minifier->minify();
+            $buffer = \JSMin::minify($buffer);
         }
 
         // Write file
         if (strlen(trim($buffer)) > 0) {
-            file_put_contents($this->assets_dir . $file, $buffer);
+            file_put_contents($absolute_path, $buffer);
 
             return $relative_path . $key;
         } else {
@@ -958,7 +901,7 @@ class Assets
 
         // Check if $directory is a stream.
         if (strpos($directory, '://')) {
-            $directory = Grav::instance()['locator']->findResource($directory, null);
+            $directory = self::$grav['locator']->findResource($directory, null);
         }
 
         // Get files
@@ -1006,13 +949,6 @@ class Assets
      */
     protected function isRemoteLink($link)
     {
-        $base = Grav::instance()['uri']->rootUrl(true);
-
-        // sanity check for local URLs with absolute URL's enabled
-        if (Utils::startsWith($link, $base)) {
-            return false;
-        }
-
         return ('http://' === substr($link, 0, 7) || 'https://' === substr($link, 0, 8) || '//' === substr($link, 0,
                 2));
     }
@@ -1027,7 +963,7 @@ class Assets
     protected function buildLocalLink($asset)
     {
         try {
-            $asset = Grav::instance()['locator']->findResource($asset, false);
+            $asset = self::getGrav()['locator']->findResource($asset, false);
         } catch (\Exception $e) {
         }
 
@@ -1044,7 +980,6 @@ class Assets
     protected function attributes(array $attributes)
     {
         $html = '';
-        $no_key = ['loading'];
 
         foreach ($attributes as $key => $value) {
             // For numeric keys we will assume that the key and the value are the same
@@ -1057,12 +992,7 @@ class Assets
                 $value = implode(' ', $value);
             }
 
-            if (in_array($key, $no_key)) {
-                $element = htmlentities($value, ENT_QUOTES, 'UTF-8', false);
-            } else {
-                $element = $key . '="' . htmlentities($value, ENT_QUOTES, 'UTF-8', false) . '"';
-            }
-
+            $element = $key . '="' . htmlentities($value, ENT_QUOTES, 'UTF-8', false) . '"';
             $html .= ' ' . $element;
         }
 
@@ -1080,11 +1010,10 @@ class Assets
     protected function gatherLinks(array $links, $css = true)
     {
         $buffer = '';
-
+        $local = true;
 
         foreach ($links as $asset) {
             $relative_dir = '';
-            $local = true;
 
             $link = $asset['asset'];
             $relative_path = $link;
@@ -1122,7 +1051,6 @@ class Assets
                 $file = $this->cssRewrite($file, $relative_dir);
             }
 
-            $file = rtrim($file) . PHP_EOL;
             $buffer .= $file;
         }
 
@@ -1151,15 +1079,10 @@ class Assets
         // Then replace the old url with the new one
         $file = preg_replace_callback(self::CSS_URL_REGEX, function ($matches) use ($relative_path) {
 
-            $old_url = $matches[2];
+            $old_url = $matches[1];
 
             // ensure this is not a data url
             if (strpos($old_url, 'data:') === 0) {
-                return $matches[0];
-            }
-
-            // ensure this is not a remote url
-            if ($this->isRemoteLink($old_url)) {
                 return $matches[0];
             }
 

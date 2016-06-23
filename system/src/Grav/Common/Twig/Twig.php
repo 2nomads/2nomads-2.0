@@ -54,8 +54,6 @@ class Twig
     protected $loaderArray;
 
 
-    protected $autoescape;
-
     /**
      * Constructor
      *
@@ -107,12 +105,7 @@ class Twig
 
             $params = $config->get('system.twig');
             if (!empty($params['cache'])) {
-                $cachePath = $locator->findResource('cache://twig', true, true);
-                $params['cache'] = new \Twig_Cache_Filesystem($cachePath, \Twig_Cache_Filesystem::FORCE_BYTECODE_INVALIDATION);
-            }
-
-            if (!empty($this->autoescape)) {
-                $params['autoescape'] = $this->autoescape;
+                $params['cache'] = $locator->findResource('cache://twig', true, true);
             }
 
             $this->twig = new TwigEnvironment($loader_chain, $params);
@@ -371,14 +364,5 @@ class Twig
         } else {
             return $template;
         }
-    }
-
-    /**
-     * Overrides the autoescape setting
-     *
-     * @param boolean $state
-     */
-    public function setAutoescape($state) {
-        $this->autoescape = (bool) $state;
     }
 }

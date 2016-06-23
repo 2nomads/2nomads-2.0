@@ -101,9 +101,9 @@ class IndexCommand extends ConsoleCommand
 
         $this->gpm = new GPM($this->options['force']);
 
-        $this->displayGPMRelease();
-
         $this->data = $this->gpm->getRepository();
+
+        $this->output->writeln('');
 
         $data = $this->filter($this->data);
 

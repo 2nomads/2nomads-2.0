@@ -109,18 +109,10 @@ class InstallCommand extends ConsoleCommand
         $this->output->writeln('');
 
         foreach ($this->config['git'] as $repo => $data) {
-            $this->destination = rtrim($this->destination, DS);
             $path = $this->destination . DS . $data['path'];
             if (!file_exists($path)) {
-                exec('cd "' . $this->destination . '" && git clone -b ' . $data['branch'] . ' ' . $data['url'] . ' ' . $data['path'], $output, $return);
-
-                if (!$return) {
-                    $this->output->writeln('<green>SUCCESS</green> cloned <magenta>' . $data['url'] . '</magenta> -> <cyan>' . $path . '</cyan>');
-                } else {
-                    $this->output->writeln('<red>ERROR</red> cloning <magenta>' . $data['url']);
-
-                }
-
+                exec('cd "' . $this->destination . '" && git clone -b ' . $data['branch'] . ' ' . $data['url'] . ' ' . $data['path']);
+                $this->output->writeln('<green>SUCCESS</green> cloned <magenta>' . $data['url'] . '</magenta> -> <cyan>' . $path . '</cyan>');
                 $this->output->writeln('');
             } else {
                 $this->output->writeln('<red>' . $path . ' already exists, skipping...</red>');

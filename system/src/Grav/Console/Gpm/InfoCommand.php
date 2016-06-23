@@ -57,8 +57,6 @@ class InfoCommand extends ConsoleCommand
     {
         $this->gpm = new GPM($this->input->getOption('force'));
 
-        $this->displayGPMRelease();
-
         $foundPackage = $this->gpm->findPackage($this->input->getArgument('package'));
 
         if (!$foundPackage) {
@@ -85,7 +83,7 @@ class InfoCommand extends ConsoleCommand
         $this->output->writeln("<green>" . str_pad("Author",
                 12) . ":</green> " . $foundPackage->author['name'] . ' <' . $foundPackage->author['email'] . '> ' . $packageURL);
 
-        foreach ([
+        foreach (array(
                      'version',
                      'keywords',
                      'date',
@@ -97,7 +95,7 @@ class InfoCommand extends ConsoleCommand
                      'bugs',
                      'zipball_url',
                      'license'
-                 ] as $info) {
+                 ) as $info) {
             if (isset($foundPackage->$info)) {
                 $name = ucfirst($info);
                 $data = $foundPackage->$info;

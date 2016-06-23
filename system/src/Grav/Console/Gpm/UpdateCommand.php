@@ -38,7 +38,7 @@ class UpdateCommand extends ConsoleCommand
     /**
      * @var array
      */
-    protected $types = ['plugins', 'themes'];
+    protected $types = array('plugins', 'themes');
     /**
      * @var GPM $gpm
      */
@@ -85,9 +85,6 @@ class UpdateCommand extends ConsoleCommand
     protected function serve()
     {
         $this->gpm = new GPM($this->input->getOption('force'));
-
-        $this->displayGPMRelease();
-
         $this->destination = realpath($this->input->getOption('destination'));
         $skip_prompt = $this->input->getOption('all-yes');
 
@@ -125,7 +122,7 @@ class UpdateCommand extends ConsoleCommand
                 }
 
                 $this->output->writeln(
-                    // index
+                // index
                     str_pad($index++ + 1, 2, '0', STR_PAD_LEFT) . ". " .
                     // name
                     "<cyan>" . str_pad($package->name, 15) . "</cyan> " .
@@ -152,13 +149,13 @@ class UpdateCommand extends ConsoleCommand
         // finally update
         $install_command = $this->getApplication()->find('install');
 
-        $args = new ArrayInput([
+        $args = new ArrayInput(array(
             'command' => 'install',
             'package' => $slugs,
             '-f'      => $this->input->getOption('force'),
             '-d'      => $this->destination,
             '-y'      => true
-        ]);
+        ));
         $command_exec = $install_command->run($args, $this->output);
 
         if ($command_exec != 0) {
@@ -207,7 +204,6 @@ class UpdateCommand extends ConsoleCommand
             }
 
             if (count($ignore)) {
-                $this->output->writeln('');
                 $this->output->writeln("Packages not found or not requiring updates: <red>" . implode('</red>, <red>',
                         $ignore) . "</red>");
             }
