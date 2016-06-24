@@ -2,53 +2,30 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/home/vagrant/Projects/2nomads/user/config/site.yaml',
-    'modified' => 1466645069,
+    'modified' => 1461784112,
     'data' => [
-        'title' => '2nomads',
+        'title' => 'Free HTML5/CSS3 Template by Peter Finla',
         'author' => [
-            'name' => '2nomads',
-            'email' => 'info@2nomads.org'
+            'name' => 'Peter Finla'
         ],
         'metadata' => [
-            'description' => 'Twenty is a free and responsive theme for **Grav**. Its a port of Twenty template by HTML5 UP.'
+            'description' => 'Boxify is a free and responsive theme for **Grav**. Its a port of Boxify template by Styleshout.'
         ],
-        'email' => 'info@2nomads.org',
-        'description' => 'Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.',
-        'social' => [
-            0 => [
-                'label' => 'Twitter',
-                'url' => '#',
-                'icon' => 'twitter'
-            ],
-            1 => [
-                'label' => 'Facebook',
-                'url' => '#',
-                'icon' => 'facebook'
-            ],
-            2 => [
-                'label' => 'Google+',
-                'url' => '#',
-                'icon' => 'google-plus'
-            ],
-            3 => [
-                'label' => 'Github',
-                'url' => '#',
-                'icon' => 'github'
-            ],
-            4 => [
-                'label' => 'Dribbble',
-                'url' => '#',
-                'icon' => 'dribbble'
+        'header' => [
+            'title' => 'An Exclusive, Premium HTML5 &amp; CSS3 Template by Peter Finlan, for Codrops.',
+            'buttons' => [
+                0 => [
+                    'text' => 'Use it for Free',
+                    'link' => 'http://tympanus.net/codrops/?p=22554',
+                    'class' => 'use-btn animated fadeInUp'
+                ],
+                1 => [
+                    'text' => 'Learn More',
+                    'link' => '#about',
+                    'class' => 'learn-btn animated fadeInUp',
+                    'icon' => 'arrow-down'
+                ]
             ]
-        ],
-        'copyright' => [
-            'line1' => 'Untitled',
-            'line2' => 'Design:',
-            'url' => 'http://html5up.net',
-            'url_label' => 'HTML5 UP'
-        ],
-        'logo' => [
-            'text1' => '2nomads'
         ]
     ]
 ];

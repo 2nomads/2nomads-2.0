@@ -1,7 +1,7 @@
 <?php
  namespace Grav\Theme;
 
- class Nomad extends Twenty
+ class Nomad extends Boxify
  {
      // Some new methods, properties etc.
  }

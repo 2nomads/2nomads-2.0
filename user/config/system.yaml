@@ -3,11 +3,10 @@ home:
 
 pages:
   theme: nomad
+  markdown_extra: true
   process:
     markdown: true
     twig: false
-  markdown:
-    extra: true
 
 cache:
   enabled: false

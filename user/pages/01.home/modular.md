@@ -1,17 +1,16 @@
 ---
-title: 2nomads
+title: Boxify
 menu: Home
 onpage_menu: true
-body_class: index
-header_class: alt
 content:
     items: @self.modular
     order:
         by: default
         dir: asc
         custom:
-            - _banner
-            - _header
-            - _icons
+            - _video
             - _features
+            - _featureslist
+            - _showcase
+            - _screenshots
 ---

@@ -1,0 +1,23 @@
+<div class="overlay overlay-boxify">
+    <nav>
+        {% set show_onpage_menu = header.onpage_menu == true or header.onpage_menu is null %}
+        {% macro pageLinkName(text) %}{{ text|lower|replace({' ':'_'}) }}{% endmacro %}
+
+         <ul>
+                <li class="{{ current_module }}">
+                    <a href="home"><i class="fa fa-home"></i>Home</a>
+                </li>
+                <li class="{{ current_module }}">
+                    <a href="blog"><i class="fa fa-pencil"></i>Blog</a>
+                </li>
+                <li class="{{ current_module }}">
+                    <a href="about"><i class="fa fa-globe"></i>About</a>
+                </li>
+                <li class="{{ current_module }}">
+                    <a href="team"><i class="fa fa-star"></i>Team</a>
+                </li>
+    </ul>
+    </ul>
+    </ul>
+    </nav>
+</div>

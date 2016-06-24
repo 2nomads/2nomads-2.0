@@ -2,19 +2,17 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/home/vagrant/Projects/2nomads/user/config/system.yaml',
-    'modified' => 1466644784,
+    'modified' => 1466723326,
     'data' => [
         'home' => [
             'alias' => '/home'
         ],
         'pages' => [
             'theme' => 'nomad',
+            'markdown_extra' => true,
             'process' => [
                 'markdown' => true,
                 'twig' => false
-            ],
-            'markdown' => [
-                'extra' => true
             ]
         ],
         'cache' => [

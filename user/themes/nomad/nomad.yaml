@@ -1,3 +1,8 @@
+enabled: true
+color: blue
+dropdown:
+  enabled: false
+
 streams:
  schemes:
    theme:
@@ -5,4 +10,4 @@ streams:
      prefixes:
        '':
          - user/themes/nomad
-         - user/themes/twenty
+         - user/themes/boxify

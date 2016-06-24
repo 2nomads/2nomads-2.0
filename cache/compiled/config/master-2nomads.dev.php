@@ -1,61 +1,53 @@
 <?php
 return [
     '@class' => 'Grav\\Common\\Config\\CompiledConfig',
-    'timestamp' => 1466645215,
-    'checksum' => 'ace87101b21b64fec62064f2d010f134',
+    'timestamp' => 1466729874,
+    'checksum' => 'b550152e72753d37de16259ea671ce4e',
     'files' => [
         'user/config' => [
-            'plugins/email' => [
-                'file' => 'user/config/plugins/email.yaml',
-                'modified' => 1466645095
+            'plugins/simple_form' => [
+                'file' => 'user/config/plugins/simple_form.yaml',
+                'modified' => 1461784112
             ],
             'security' => [
                 'file' => 'user/config/security.yaml',
-                'modified' => 1466642800
+                'modified' => 1466647824
             ],
             'site' => [
                 'file' => 'user/config/site.yaml',
-                'modified' => 1466645069
+                'modified' => 1461784112
             ],
             'system' => [
                 'file' => 'user/config/system.yaml',
-                'modified' => 1466644784
+                'modified' => 1466723326
             ]
         ],
         'system/config' => [
             'media' => [
                 'file' => 'system/config/media.yaml',
-                'modified' => 1461784079
+                'modified' => 1461784112
             ],
             'site' => [
                 'file' => 'system/config/site.yaml',
-                'modified' => 1461784079
+                'modified' => 1461784112
             ],
             'streams' => [
                 'file' => 'system/config/streams.yaml',
-                'modified' => 1461784079
+                'modified' => 1461784112
             ],
             'system' => [
                 'file' => 'system/config/system.yaml',
-                'modified' => 1461784079
+                'modified' => 1461784112
             ]
         ],
         'user/plugins' => [
             'plugins/error' => [
                 'file' => 'user/plugins/error/error.yaml',
-                'modified' => 1461784080
+                'modified' => 1461784113
             ],
             'plugins/problems' => [
                 'file' => 'user/plugins/problems/problems.yaml',
-                'modified' => 1461784083
-            ],
-            'plugins/form' => [
-                'file' => 'user/plugins/form/form.yaml',
-                'modified' => 1461784081
-            ],
-            'plugins/email' => [
-                'file' => 'user/plugins/email/email.yaml',
-                'modified' => 1461784080
+                'modified' => 1461784114
             ]
         ]
     ],
@@ -71,37 +63,14 @@ return [
                 'enabled' => true,
                 'built_in_css' => true
             ],
-            'form' => [
+            'simple_form' => [
                 'enabled' => true,
-                'files' => [
-                    'multiple' => false,
-                    'destination' => '@self',
-                    'accept' => [
-                        0 => 'image/*'
-                    ]
+                'token' => '',
+                'template_file' => 'simple_form',
+                'fields' => NULL,
+                'messages' => [
+                    'success' => 'Your message has been sent.'
                 ]
-            ],
-            'email' => [
-                'enabled' => true,
-                'from' => 'info@2nomads.org',
-                'from_name' => NULL,
-                'to' => 'info@2nomads.org',
-                'to_name' => NULL,
-                'mailer' => [
-                    'engine' => 'mail',
-                    'smtp' => [
-                        'server' => 'localhost',
-                        'port' => 25,
-                        'encryption' => 'none',
-                        'user' => '',
-                        'password' => ''
-                    ],
-                    'sendmail' => [
-                        'bin' => '/usr/sbin/sendmail'
-                    ]
-                ],
-                'content_type' => 'text/html',
-                'debug' => false
             ]
         ],
         'media' => [
@@ -347,17 +316,17 @@ return [
             ]
         ],
         'site' => [
-            'title' => '2nomads',
+            'title' => 'Free HTML5/CSS3 Template by Peter Finla',
             'author' => [
-                'name' => '2nomads',
-                'email' => 'info@2nomads.org'
+                'name' => 'Peter Finla',
+                'email' => 'john@email.com'
             ],
             'taxonomies' => [
                 0 => 'category',
                 1 => 'tag'
             ],
             'metadata' => [
-                'description' => 'Twenty is a free and responsive theme for **Grav**. Its a port of Twenty template by HTML5 UP.'
+                'description' => 'Boxify is a free and responsive theme for **Grav**. Its a port of Boxify template by Styleshout.'
             ],
             'summary' => [
                 'enabled' => true,
@@ -370,43 +339,21 @@ return [
             'blog' => [
                 'route' => '/blog'
             ],
-            'email' => 'info@2nomads.org',
-            'description' => 'Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.',
-            'social' => [
-                0 => [
-                    'label' => 'Twitter',
-                    'url' => '#',
-                    'icon' => 'twitter'
-                ],
-                1 => [
-                    'label' => 'Facebook',
-                    'url' => '#',
-                    'icon' => 'facebook'
-                ],
-                2 => [
-                    'label' => 'Google+',
-                    'url' => '#',
-                    'icon' => 'google-plus'
-                ],
-                3 => [
-                    'label' => 'Github',
-                    'url' => '#',
-                    'icon' => 'github'
-                ],
-                4 => [
-                    'label' => 'Dribbble',
-                    'url' => '#',
-                    'icon' => 'dribbble'
+            'header' => [
+                'title' => 'An Exclusive, Premium HTML5 &amp; CSS3 Template by Peter Finlan, for Codrops.',
+                'buttons' => [
+                    0 => [
+                        'text' => 'Use it for Free',
+                        'link' => 'http://tympanus.net/codrops/?p=22554',
+                        'class' => 'use-btn animated fadeInUp'
+                    ],
+                    1 => [
+                        'text' => 'Learn More',
+                        'link' => '#about',
+                        'class' => 'learn-btn animated fadeInUp',
+                        'icon' => 'arrow-down'
+                    ]
                 ]
-            ],
-            'copyright' => [
-                'line1' => 'Untitled',
-                'line2' => 'Design:',
-                'url' => 'http://html5up.net',
-                'url_label' => 'HTML5 UP'
-            ],
-            'logo' => [
-                'text1' => '2nomads'
             ]
         ],
         'streams' => [
@@ -480,7 +427,7 @@ return [
                     'twig' => true
                 ],
                 'markdown' => [
-                    'extra' => true,
+                    'extra' => false,
                     'auto_line_breaks' => false,
                     'auto_url_links' => false,
                     'escape_markup' => false,
@@ -514,7 +461,8 @@ return [
                     1 => '.idea'
                 ],
                 'ignore_hidden' => true,
-                'url_taxonomy_filters' => true
+                'url_taxonomy_filters' => true,
+                'markdown_extra' => true
             ],
             'cache' => [
                 'enabled' => false,
@@ -583,7 +531,7 @@ return [
             ]
         ],
         'security' => [
-            'salt' => 'zG059CUPqsliJZ'
+            'salt' => '5lRfzkZF4HpeMg'
         ]
     ]
 ];

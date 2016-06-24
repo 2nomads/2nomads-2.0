@@ -1,44 +1,45 @@
-# Twenty Skeleton for Grav
+# Boxify Skeleton for Grav
 
-![Twenty](assets/readme_1.png)
+![Boxify](assets/readme_1.png)
 
-This Grav theme is a port of the [Twenty theme](http://html5up.net/twenty) by [HTML5 UP](http://html5up.net/).
+Boxify is a stylish HTML5/CSS3 template that was carefully crafted and enhanced with some smooth effects. It’s fitting for any type of portfolio or start-up website, but it’s very flexible and can be used for many other projects. It's made by [Peter Finlan for Codrops](http://tympanus.net/codrops/?p=22554).
 
-# Features
+# Built on:
 
+* Bootstrap
+* Flickity
+* fancyBox
+* jQuery Waypoints
+* Animate.css
+
+# Features:
+
+* HTML5 and CSS3
 * Fully Responsive
-* Built on HTML5/CSS3/skel
-* Section Icons by Font Awesome
-* Released for Free Under the Creative Commons Attribution 3.0
-* Social Icons
-* Simple Form Support
-* Layouts: Modular, Right Sidebar, Left Sidebar, No sidebar
-* Special layouts: Portfolio, Bottom Modules
+* Attractive and modern design
+* Various templates for presenting your content
 
-## Basic Setup for a New Grav Site
+## Basic Setup for a new Grav site
 
-The simplest way to install Twenty theme for Grav is to download and install the Twenty Skeleton package:
+The simplest way to install Boxify theme for Grav is to download and install the Boxify Skeleton package:
 
-1. [Download Twenty Skeleton](http://getgrav.org/downloads/skeletons#extras)
-2. Unzip the package into your web root folder.
-3. Point your browser at the folder.
-4. Job done!
+1. [Download Boxify Skeleton](http://getgrav.org/downloads/skeletons#extras)
+2. Simply unzip the package into your web root folder.
+3. Point your browser at the folder, job done!
 
-**TIP:** Check out the [general Grav Installation Instructions](http://learn.getgrav.org/basics/installation) for more details on this process.
+**TIP:** Check out the [general Grav installation instructions](http://learn.getgrav.org/basics/installation) for more details on this process.
 
 ---
 
 ## Existing Grav site
 
-It is possible to install just the theme, but page content will need to reference the [Twenty theme](https://github.com/getgrav/grav-theme-twenty)'s supported templates.  It is strongly advised to at least install the Twenty Skeleton package to see the theme's capabilities in action.
+It is possible to install just the theme, but page content will need to reference the [Boxify theme](https://github.com/getgrav/grav-theme-boxify)'s supported templates.  It is strongly advised to at least install the Boxify Skeleton package to see the theme's capabilities in action.
 
-To install **just** the theme, you will want to do so via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm) through your system's Terminal (also called the command line).  From the root of your Grav install type:
+To install  **just** the theme:
 
-    bin/gpm install twenty
+```
+$ bin/gpm install boxify
+```
 
-This will install the Twenty theme into your `/user/themes` directory within Grav. Its files can be found under `/your/site/grav/user/themes/twenty`.
 
-You can find more information bout this process, including manual installation instructions, by visiting the [project page for the stand-alone Grav theme](https://github.com/getgrav/grav-theme-twenty).
 
-# Contact Form Configuration
-For contact form configuration instructions please refer to [official documentatnion](http://learn.getgrav.org/advanced/contact-form). Make sure you installed Email and Form plugin though.

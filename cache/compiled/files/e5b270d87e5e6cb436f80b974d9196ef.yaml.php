@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/home/vagrant/Projects/2nomads/system/config/site.yaml',
-    'modified' => 1461784079,
+    'modified' => 1461784112,
     'data' => [
         'title' => 'Grav',
         'author' => [
